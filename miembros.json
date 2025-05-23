@@ -1,7 +1,11 @@
 [
-  { "nombre": "BladeMaster", "rol": "dps" },
-  { "nombre": "LuzDivina", "rol": "healer" },
-  { "nombre": "AegisGuardian", "rol": "support" },
-  { "nombre": "DarkHunter", "rol": "dps" },
-  { "nombre": "SanadorX", "rol": "healer" }
+  { "id": 1, "nombre": "DPS_1", "rol": "Rojo" },
+  { "id": 2, "nombre": "Healer_1", "rol": "Verde" },
+  { "id": 3, "nombre": "Support_1", "rol": "Azul" },
+  { "id": 4, "nombre": "DPS_2", "rol": "Rojo" },
+  { "id": 5, "nombre": "Healer_2", "rol": "Verde" },
+  { "id": 6, "nombre": "Support_2", "rol": "Azul" },
+  { "id": 7, "nombre": "DPS_3", "rol": "Rojo" },
+  { "id": 8, "nombre": "Healer_3", "rol": "Verde" },
+  { "id": 9, "nombre": "Support_3", "rol": "Azul" }
 ]
