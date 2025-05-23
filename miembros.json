@@ -1,0 +1,7 @@
+[
+  { "nombre": "BladeMaster", "rol": "dps" },
+  { "nombre": "LuzDivina", "rol": "healer" },
+  { "nombre": "AegisGuardian", "rol": "support" },
+  { "nombre": "DarkHunter", "rol": "dps" },
+  { "nombre": "SanadorX", "rol": "healer" }
+]

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestor de Rosters</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="configuracion">
+    <label>Rosters: <input type="number" id="numRosters" value="1" min="1" /></label>
+    <label>Miembros por roster: <input type="number" id="miembrosPorRoster" value="5" min="1" /></label>
+    <button onclick="crearRosters()">Crear rosters</button>
+  </div>
+
+  <div id="rostersContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body {
+  font-family: sans-serif;
+  background-color: #111;
+  color: #eee;
+  padding: 20px;
+}
+
+.configuracion {
+  margin-bottom: 20px;
+}
+
+.roster {
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.roster h3 {
+  margin-top: 0;
+  color: #ffcc00;
+}
+
+.slot {
+  margin: 5px 0;
+}
+
+.miembro {
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.dps {
+  background-color: #e74c3c;
+}
+
+.healer {
+  background-color: #2ecc71;
+}
+
+.support {
+  background-color: #3498db;
+}
+
+button {
+  padding: 6px 12px;
+  margin-top: 4px;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #777;
+}
