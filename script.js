@@ -62,11 +62,6 @@ function crearRosters() {
   }
 }
 
-@media (max-width: 800px) {
-  #rostersContainer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
 // Ahora pasamos el roster al mostrarMenu
 function mostrarMenu(slot, roster) {
   cerrarMenus();
@@ -148,34 +143,8 @@ document.addEventListener("click", (e) => {
   if (!e.target.closest(".menu-miembros") && !e.target.closest(".miembro-slot")) {
     cerrarMenus();
   }
-  .roster {
-    width: 100%;
-    min-width: unset;
-  }
-}
 });
 
-@media (max-width: 600px) {
-  .config-card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    padding: 14px 8px;
-  }
-  .roster {
-    padding: 10px 4px 10px 4px;
-  }
-  .roster h3 {
-    font-size: 1em;
-  }
-  .miembro-slot {
-    font-size: 0.97em;
-    padding: 8px;
-  }
-  .menu-miembros {
-    min-width: 140px;
-    font-size: 0.97em;
-  }
 function getMiembrosSeleccionadosGlobal() {
   return Array.from(document.querySelectorAll(".miembro-slot"))
     .map(s => s.dataset.miembro)
