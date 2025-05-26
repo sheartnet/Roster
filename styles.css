@@ -114,28 +114,19 @@ input, button {
   flex-wrap: wrap;
   gap: 32px;
   justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .roster {
-  flex: 1 1 320px;
+  border: 2.5px solid #ffe600;
+  border-radius: 0 18px 0 18px;
+  background: #181c24;
+  padding: 22px 16px 18px 16px;
+  margin-bottom: 10px;
+  position: relative;
   min-width: 260px;
-  max-width: 100%;
-  box-sizing: border-box;
+  transition: box-shadow 0.2s, border 0.2s;
+  overflow: hidden;
 }
-
-@media (max-width: 900px) {
-  #rostersContainer {
-    flex-direction: column;
-    gap: 18px;
-  }
-  .roster {
-    width: 100%;
-    min-width: unset;
-    max-width: 100%;
-  }
 .roster::after {
   content: "";
   position: absolute;
