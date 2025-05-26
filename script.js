@@ -150,3 +150,52 @@ function getMiembrosSeleccionadosGlobal() {
     .map(s => s.dataset.miembro)
     .filter(Boolean);
 }
+
+const SHEET_ID = "12pZNSyEHiBR2etVXLU5Yylw1ffmIkAqiS-Kty-i1vws";
+let listaMiembros = [];
+
+async function cargarMiembrosDesdeSheet(sheetId) {
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    const json = JSON.parse(text.substring(47).slice(0, -2));
+    
+    const rows = json.table.rows;
+    listaMiembros = rows.map(row => ({
+      nombre: row.c[0]?.v || '',
+      rol: row.c[1]?.v || '',
+      icono: row.c[2]?.v || ''
+    }));
+
+    mostrarMiembrosEnSelector(listaMiembros);
+  } catch (err) {
+    console.error("Error al cargar miembros desde Google Sheets:", err);
+  }
+}
+
+function mostrarMiembrosEnSelector(miembros) {
+  const contenedor = document.getElementById("selector-miembros");
+  contenedor.innerHTML = "";
+
+  miembros.forEach(miembro => {
+    const item = document.createElement("div");
+    item.className = `miembro-selector ${miembro.rol.toLowerCase()}`;
+    item.innerHTML = `
+      <img src="${miembro.icono}" alt="${miembro.rol}" class="icono-rol">
+      <span>${miembro.nombre}</span>
+    `;
+    item.addEventListener("click", () => seleccionarMiembro(miembro));
+    contenedor.appendChild(item);
+  });
+}
+
+function seleccionarMiembro(miembro) {
+  // Aquí puedes añadir la lógica para añadirlo al grupo correspondiente
+  alert(`Has seleccionado a ${miembro.nombre} (${miembro.rol})`);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  cargarMiembrosDesdeSheet(SHEET_ID);
+});
