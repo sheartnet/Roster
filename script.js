@@ -154,48 +154,66 @@ function getMiembrosSeleccionadosGlobal() {
 const SHEET_ID = "12pZNSyEHiBR2etVXLU5Yylw1ffmIkAqiS-Kty-i1vws";
 let listaMiembros = [];
 
-async function cargarMiembrosDesdeSheet(sheetId) {
-  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+async function cargarMiembrosDesdeSheet() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
   try {
-    const response = await fetch(url);
-    const text = await response.text();
+    const res = await fetch(url);
+    const text = await res.text();
     const json = JSON.parse(text.substring(47).slice(0, -2));
-    
     const rows = json.table.rows;
+
     listaMiembros = rows.map(row => ({
       nombre: row.c[0]?.v || '',
-      rol: row.c[1]?.v || '',
+      rol: (row.c[1]?.v || '').toLowerCase(),
       icono: row.c[2]?.v || ''
     }));
 
-    mostrarMiembrosEnSelector(listaMiembros);
+    mostrarMiembros();
   } catch (err) {
-    console.error("Error al cargar miembros desde Google Sheets:", err);
+    console.error("Error cargando datos desde Google Sheets:", err);
   }
 }
 
-function mostrarMiembrosEnSelector(miembros) {
+function mostrarMiembros() {
   const contenedor = document.getElementById("selector-miembros");
   contenedor.innerHTML = "";
 
-  miembros.forEach(miembro => {
-    const item = document.createElement("div");
-    item.className = `miembro-selector ${miembro.rol.toLowerCase()}`;
-    item.innerHTML = `
-      <img src="${miembro.icono}" alt="${miembro.rol}" class="icono-rol">
+  listaMiembros.forEach(miembro => {
+    const div = document.createElement("div");
+    div.className = `miembro-selector ${miembro.rol}`;
+    div.innerHTML = `
+      <img class="icono-rol" src="${miembro.icono}" alt="${miembro.rol}" />
       <span>${miembro.nombre}</span>
     `;
-    item.addEventListener("click", () => seleccionarMiembro(miembro));
-    contenedor.appendChild(item);
+    div.addEventListener("click", () => seleccionarMiembro(miembro));
+    contenedor.appendChild(div);
   });
 }
 
 function seleccionarMiembro(miembro) {
-  // Aquí puedes añadir la lógica para añadirlo al grupo correspondiente
-  alert(`Has seleccionado a ${miembro.nombre} (${miembro.rol})`);
+  alert(`Seleccionaste a: ${miembro.nombre}`);
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  cargarMiembrosDesdeSheet(SHEET_ID);
+// Lógica para crear rosters (sigue igual de momento)
+document.getElementById("crearBtn").addEventListener("click", () => {
+  const numRosters = parseInt(document.getElementById("numRosters").value);
+  const miembrosPorRoster = parseInt(document.getElementById("miembrosPorRoster").value);
+  const container = document.getElementById("rostersContainer");
+
+  container.innerHTML = "";
+
+  for (let i = 0; i < numRosters; i++) {
+    const roster = document.createElement("div");
+    roster.className = "roster";
+    roster.innerHTML = `<h3>Roster ${i + 1}</h3>`;
+    for (let j = 0; j < miembrosPorRoster; j++) {
+      const slot = document.createElement("div");
+      slot.className = "slot";
+      roster.appendChild(slot);
+    }
+    container.appendChild(roster);
+  }
 });
+
+window.addEventListener("DOMContentLoaded", cargarMiembrosDesdeSheet);
