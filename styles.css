@@ -276,6 +276,16 @@ input, button {
   filter: drop-shadow(0 0 4px #ffe600cc);
 }
 
+.grupo-miembro {
+  margin-left: 10px;
+  color: #009cff;
+  font-size: 0.95em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
 @media (max-width: 800px) {
   #rostersContainer {
     flex-direction: column;
